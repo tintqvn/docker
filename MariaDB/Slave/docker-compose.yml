@@ -1,0 +1,21 @@
+version: '2'
+
+networks:
+    mariadb:
+        external: true
+services:
+    slave_tintq:
+        image: mariadb:10.5
+        container_name: slave_tintq
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: pkY5PkdrkZsDv8PP
+        volumes:
+            - ./sql/slave:/docker-entrypoint-initdb.d
+            - ./mariadb.conf.d:/etc/mysql/mariadb.conf.d
+            - /data/db/mysql_giaido:/var/lib/mysql
+        command: mysqld --log-bin=mariadb-bin --binlog-format=ROW --server-id=1001 --log-slave-updates
+        ports:
+            - "3310:3306"
+        networks:
+            - mariadb
