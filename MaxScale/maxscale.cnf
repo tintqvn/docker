@@ -1,0 +1,12 @@
+[maxscale]
+threads=auto
+log_augmentation = 1
+ms_timestamp = 1
+syslog = 1
+
+admin_secure_gui=false
+
+# this enables external access to the REST API outside of localhost
+# please review / modify for any public / non development environments
+
+admin_host=0.0.0.0
